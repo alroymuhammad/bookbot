@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 def words_count(filepath):
     with open(filepath) as file:
         file_contents = file.read()
@@ -5,17 +8,16 @@ def words_count(filepath):
         num_words = len(words)
     return num_words
 
+
 def characters_count(filepath):
-    alphabet = {}
+    alphabet = defaultdict(int)
     with open(filepath) as file:
         file_contents = file.read().lower()
         for ch in file_contents:
-            if 'a' <= ch <= 'z':
-                if ch in alphabet:
-                    alphabet[ch] += 1
-                else:
-                    alphabet[ch] = 1
-    return alphabet    
+            if ch.isalpha() and 'a' <= ch <= 'z':
+                alphabet[ch] += 1
+    return alphabet
+
 
 def sorted_list_of_dicts(freq_dict):
 
